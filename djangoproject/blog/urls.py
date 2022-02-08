@@ -4,9 +4,13 @@ from blog import views
 
 
 
+
+
 urlpatterns = [
     path('', views.home, name='blog-home'),
-    path('about/', views.About.as_view(), name='blog-about')
+    path('about/', views.About.as_view(), name='blog-about'),
+    path('contact/', views.Contact.as_view(), name='blog-contact')
+    
 
 
 ]

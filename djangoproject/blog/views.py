@@ -13,4 +13,7 @@ def home(request) -> HttpResponse:
 class About(TemplateView):
     template_name = 'blog/about.html'
 
+class Contact(TemplateView):
+    template_name = 'blog/contact.html'    
+
 
