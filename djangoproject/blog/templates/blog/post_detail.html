@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% block content%}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <img class='rounded-circle article-image' src="{{ object.author.profile.image.url }}" alt="Authors profile pic">
+            <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted |date:'F d, Y H:i:s' }}</small>
+        </div>
+        <h3 class="article-title">{{ object.title }}</h3>
+        <p class="article-content">{{ object.content }}</p>
+        {% if object.author == user %}
+            <a class='btn btn-secondary btn-sm mt-1 mb-1' href="{% url 'post-update' object.id %}">Update</a>
+            <a class='btn btn-danger btn-sm mt-1 mb-1' href="{% url 'post-delete' object.id %}">Delete</a>
+        {% endif %}
+        </div>
+    </article>
+    {% if user.is_authenticated %}
+        <br/><br/>
+        <hr>
+        <br/>
+        <form action='{% url 'like-post' object.pk %}'
+        method='POST'>
+            {% csrf_token %}
+            <button class='btn btn-primary btn-sm'>Like
+            </button>
+        </form>
+    {% else %}
+        <br/><br/>
+        <hr>
+        <br/>
+           <a href="{% url 'login' %}"><button class='btn btn-primary btn-sm'>Sign in to Like
+        </button></a> 
+        
+    {% endif %}         
+{% endblock content %}    

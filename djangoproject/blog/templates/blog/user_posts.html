@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 {% block content%}
+    <h1 class='mb-3' >Posts By {{ view.kwargs.username }}</h1>
+    <h4 class='secondary mb-3'> Total of {{ page_obj.paginator.count }} Posts</h4>
     {% for post in posts %}
         <article class="media content-section">
             <div class="media-body">
@@ -39,4 +41,4 @@
 
 
     {% endif %}
-{% endblock content %}    
+{% endblock content %}  
