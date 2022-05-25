@@ -1,4 +1,3 @@
-from audioop import reverse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.models import Post
@@ -84,6 +83,8 @@ def likeview(request, pk):
     post = get_object_or_404(Post, id=pk)
     post.likes.add(request.user)
     return redirect('post-detail', pk=pk)
+
+
 
 
 

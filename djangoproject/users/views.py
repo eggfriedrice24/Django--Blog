@@ -14,24 +14,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
-# def register(request) -> HttpResponse:
-#     if request.method == 'POST':
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             messages.success(request, f'{username} Account Has Been Created!')
-#             return redirect('blog-home')
-#     else:
-#         form = UserRegisterForm()
-#     return render(request, 'users/register.html', {'form': form})
+def register(request) -> HttpResponse:
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'{username} Account Has Been Created!')
+            return redirect('blog-home')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'users/register.html', {'form': form})
 
-class RegisterView(SuccessMessageMixin, CreateView):
-    model = settings.AUTH_USER_MODEL
-    form_class = UserCreationForm
-    template_name = 'users/register.html'
-    success_url = reverse_lazy('login')
-    success_message = '%(username)s Your Account Has Been Created Successfully'
+# class RegisterView(SuccessMessageMixin, CreateView):
+#     model = settings.AUTH_USER_MODEL
+#     form_class = UserCreationForm
+#     template_name = 'users/register.html'
+#     success_url = reverse_lazy('login')
+#     success_message = '%(username)s Your Account Has Been Created Successfully'
     # def get_success_message(self, cleaned_data):
     #     return f'{cleaned_data["username"]} Account Has Been Created!'
 
